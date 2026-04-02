@@ -3589,7 +3589,11 @@ void Android_PumpRPC(SDL_Window *window)
                 {
                     RPC_GetNoData;
 
-                    SDL_SendAppEvent(SDL_EVENT_LOW_MEMORY);
+                    // SDLActivity always sent this event when going to pause.
+                    // Prevent user to do anything if rendering is not available.
+                    if (Android_RenderingAvailable()) {
+                        SDL_SendAppEvent(SDL_EVENT_LOW_MEMORY);
+                    }
                 }
                 break;
 

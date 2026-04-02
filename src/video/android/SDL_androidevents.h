@@ -33,3 +33,4 @@ void Android_OnPause(SDL_Window *window);
 void Android_OnResume(SDL_Window *window);
 void Android_OnDestroy(void);
 void Android_WakeUp(void);
+bool Android_RenderingAvailable(void);

@@ -113,6 +113,11 @@ static void Android_ResumeAudio(void)
     }
 }
 
+bool Android_RenderingAvailable()
+{
+    return !Android_Paused;
+}
+
 void Android_OnPause(SDL_Window *window)
 {
     SDL_OnApplicationWillEnterBackground();

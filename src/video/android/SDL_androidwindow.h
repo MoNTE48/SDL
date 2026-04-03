@@ -43,7 +43,6 @@ struct SDL_WindowData
     int swap_interval;
 #endif
     bool backup_done;
-    bool hasFocus;
     ANativeWindow *native_window;
 
 };

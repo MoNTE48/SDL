@@ -1836,7 +1836,8 @@ void Android_WaitForResume()
 
 void Android_WakeUp()
 {
-    RPC_SendWithoutData(WakeUp);
+    // TODO: Android doesn't need to wake up event
+    // RPC_SendWithoutData(WakeUp);
 }
 
 typedef struct {
@@ -3670,6 +3671,8 @@ void Android_PumpRPC(SDL_Window *window)
                 }
                 break;
 
+                // This command is send both from SDLActivity
+                // and from SDLThread, through Android_InitTouch() -> Android_JNI_InitTouch() -> initTouch() (java)
             case RPC_cmd_nativeAddTouch:
                 {
                     RPC_Get(nativeAddTouch);

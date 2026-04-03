@@ -589,10 +589,13 @@ static const char *cmd2Str(RPC_cmd_t cmd) {
     /* data.timestamp = SDL_GetTicks(); */                      \
     RPC_Send__(&data, data.cmd, sizeof(data), false);           \
 
+#if 0
+
 #define RPC_SendWithPriority                                            \
     /* data.timestamp = SDL_GetTicks(); */                              \
     ret_send = RPC_Send__(&data, data.cmd, sizeof(data), true);         \
 
+#endif
 
 #define RPC_Add(foo)    data.foo = foo;
 

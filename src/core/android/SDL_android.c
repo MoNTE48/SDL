@@ -3303,7 +3303,7 @@ static bool RPC_Send__(void *data, RPC_cmd_t cmd, int len, bool priority)
 #ifdef DEBUG_RPC
         __android_log_print(ANDROID_LOG_ERROR, "SDL", "cannot add RPC of len %d, cmd=%s", len, cmd2Str(cmd));
 #else
-        __android_log_print(ANDROID_LOG_ERROR, "SDL", "cannot add RPC of len %d, cmd=%d", len, cmd);
+        __android_log_print(ANDROID_LOG_ERROR, "SDL", "cannot add RPC of len %d, cmd=%u", len, cmd);
 #endif
         ret = false;
     }

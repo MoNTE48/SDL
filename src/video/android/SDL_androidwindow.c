@@ -235,6 +235,7 @@ bool Android_NativeSurfaceChanged(SDL_Window *window)
 
             if (data->egl_surface == EGL_NO_SURFACE) {
                 if (data->native_window) {
+                    SDL_SetPointerProperty(SDL_GetWindowProperties(window), SDL_PROP_WINDOW_ANDROID_WINDOW_POINTER, NULL);
                     ANativeWindow_release(data->native_window);
                     data->native_window = 0;
                 }
@@ -261,7 +262,9 @@ void Android_NativeSurfaceDestroyed(SDL_Window *window)
 #endif
 
         if (data->native_window) {
-            SDL_SetPointerProperty(SDL_GetWindowProperties(window), SDL_PROP_WINDOW_ANDROID_WINDOW_POINTER, NULL);
+            if (!window->is_destroying) {
+                SDL_SetPointerProperty(SDL_GetWindowProperties(window), SDL_PROP_WINDOW_ANDROID_WINDOW_POINTER, NULL);
+            }
             ANativeWindow_release(data->native_window);
             data->native_window = NULL;
         }

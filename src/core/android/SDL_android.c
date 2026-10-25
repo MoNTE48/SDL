@@ -1855,9 +1855,9 @@ JNIEXPORT void JNICALL SDL_JAVA_INTERFACE(nativePause)(
 
     bool ret = RPC_SendWithPriorityWithoutData(nativePause);
 
-    // Wait for completion
+    // Wait for completion: the app lets go of its Vulkan swapchain there, before the surface goes
     if (ret) {
-        if (!SDL_WaitSemaphoreTimeoutNS(Android_PauseSem, SDL_MS_TO_NS(500))) {
+        if (!SDL_WaitSemaphoreTimeoutNS(Android_PauseSem, SDL_MS_TO_NS(1000))) {
             SDL_Log("nativePause timeout expired");
             RPC_SendWithPriorityWithoutData(nativePause_CancelSem);
         }
